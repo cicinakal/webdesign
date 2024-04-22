@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame</title>
+    <style>
+        /* Aturan CSS untuk frame menu */
+        @media screen and (max-width: 600px) {
+            frameset {
+                border-collapse: collapse;
+                width: 100%;
+            }
+
+            frame[name="frame_content"] {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<frameset rows="17%, 52%, *" border="0">
+    <frame src="header.html"></frame>
+    <frameset cols="20%, *" id="menuFrameset">
+        <frame src="menu.html"></frame>
+        <frame src="content.html" name="frame_content"></frame>
+    </frameset>
+    <frame src="footer.html"></frame>
+</frameset>
+</html>

@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Menu</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .sidebar {
+            width: 200px;
+            background-color: #f4f4f4;
+            padding: 10px;
+            margin: 10px;
+            border-radius: 5px;
+        }
+
+        .sidebar h3 {
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        .menu-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .menu-item {
+            margin-bottom: 5px;
+        }
+
+        .menu-item a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            padding: 8px;
+            border-radius: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        .menu-item a:hover {
+            background-color: #ddd;
+        }
+
+        .submenu {
+            display: none;
+        }
+
+        .submenu.active {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+
+<div class="sidebar">
+    <h3>DAFTAR ISI</h3>
+    <ul class="menu-list">
+        <li class="menu-item">
+            <a href="#">Tugas Pertemuan 1</a>
+            <ul class="submenu">
+                <li><a href="tugas/pengantar_web.html" target="frame_content">Pengantar Web</a></li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Tugas Pertemuan 2</a>
+            <ul class="submenu">
+                <li><a href="tugas/tag_html.html" target="frame_content">Tag HTML</a></li>
+                <li><a href="tugas/format_text.html" target="frame_content">Format Text</a></li>
+                <li><a href="tugas/format_tulisan.html" target="frame_content">Format Tulisan</a></li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Tugas Pertemuan 3</a>
+            <ul class="submenu">
+                <li><a href="tugas/gambar.html" target="frame_content">Images</a></li>
+                <li><a href="tugas/font.html" target="frame_content">Font</a></li>
+                <li><a href="tugas/link.html" target="frame_content">Link Address</a></li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Tugas Pertemuan 4</a>
+            <ul class="submenu">
+                <li><a href="tugas/penomoran1.html" target="frame_content">Penomoran</a></li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Tugas Pertemuan 5</a>
+            <ul class="submenu">
+                <li><a href="tugas/table1.html" target="frame_content">Table</a></li>
+            </ul>
+        </li>
+        <li class="menu-item">
+            <a href="#">Tugas Pertemuan 6</a>
+        </li>
+        <li class="menu-item">
+            <a href="#">Tugas Pertemuan 7</a>
+    </ul>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var menuItems = document.querySelectorAll('.menu-item');
+
+        menuItems.forEach(function(item) {
+            var submenu = item.querySelector('.submenu');
+            if (submenu) {
+                item.addEventListener('click', function(event) {
+                    event.stopPropagation();
+                    submenu.classList.toggle('active');
+                });
+            }
+        });
+
+        // Menutup submenu ketika area di luar submenu diklik
+        document.addEventListener('click', function(event) {
+            var submenus = document.querySelectorAll('.submenu');
+            submenus.forEach(function(submenu) {
+                if (!submenu.contains(event.target)) {
+                    submenu.classList.remove('active');
+                }
+            });
+        });
+    });
+</script>
+
+</body>
+</html>
