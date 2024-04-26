@@ -123,12 +123,12 @@
             if (submenu) {
                 item.addEventListener('click', function(event) {
                     event.stopPropagation();
+                    event.preventDefault();
                     submenu.classList.toggle('active');
                 });
             }
         });
 
-        // Menutup submenu ketika area di luar submenu diklik
         document.addEventListener('click', function(event) {
             var submenus = document.querySelectorAll('.submenu');
             submenus.forEach(function(submenu) {
