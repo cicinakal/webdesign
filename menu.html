@@ -123,8 +123,11 @@
             if (submenu) {
                 item.addEventListener('click', function(event) {
                     event.stopPropagation();
-                    event.preventDefault();
                     submenu.classList.toggle('active');
+                });
+
+                submenu.addEventListener('click', function(event) {
+                    event.stopPropagation();
                 });
             }
         });
