@@ -10,37 +10,48 @@
             font-family: Arial, sans-serif;
             line-height: 1.6;
             padding: 20px;
+            background-color: #f2f2f2;
         }
         
         table {
             margin: auto;
             border-collapse: collapse;
+            width: 80%;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         th, td {
-            padding: 8px;
-            border: 1px solid black;
+            padding: 12px;
+            border: 1px solid #ddd;
             text-align: center;
+        }
+
+        th {
+            background-color: #FC819E;
+            color: #fff;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
         }
 
         h2 {
             text-align: center;
             font-family: 'Courier New', Courier, monospace;
+            color: #333;
         }
     </style>
 </head>
 <body>
     <h2>Daftar Mahasiswa</h2>
-    <table border="1">
-        <tr bgcolor="#FC819E">
-            <td width="100" align="center" rowspan="2">Nama Mahasiswa</td>
-            <td width="200" align="center" rowspan="2">Jurusan</td>
-            <td width="100" align="center" colspan="2">Nilai</td>
-            <td width="100" align="center" rowspan="2">Nilai Akhir</td>
-        </tr>
-        <tr bgcolor="#FC819E">
-            <td width="100" align="center">UTS</td>
-            <td width="100" align="center">UAS</td>
+    <table>
+        <tr>
+            <th width="100">Nama Mahasiswa</th>
+            <th width="200">Jurusan</th>
+            <th width="100">Nilai UTS</th>
+            <th width="100">Nilai UAS</th>
+            <th width="100">Nilai Akhir</th>
         </tr>
         <tr>
             <td>Naruto</td>
