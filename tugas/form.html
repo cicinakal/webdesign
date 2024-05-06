@@ -4,21 +4,88 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Form Pendaftaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        table {
+            margin: 0 auto;
+            border-collapse: collapse;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        td {
+            padding: 20px;
+            text-align: left;
+            vertical-align: top;
+            border: 1px solid #ddd;
+        }
+
+        input[type="text"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin: 4px 0;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        input[type="submit"],
+        input[type="reset"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+        }
+
+        input[type="submit"]:hover,
+        input[type="reset"]:hover {
+            background-color: #45a049;
+        }
+
+        input[type="checkbox"],
+        input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
 </head>
 <body>
 
-<h2 align="center">Form Pendaftaran</h2>
+<h2>Form Pendaftaran</h2>
 
-<table border="1" bgcolor="#FC819E" align="center">
+<table border="0" bgcolor="#FC819E">
     <form method="post" action="proses.php">
         <tr>
             <td>Nama</td>
-            <td width="200"><input type="text" name="nama" size="30" /></td>
+            <td width="200"><input type="text" name="nama" size="30" required /></td>
         </tr>
         <tr>
             <td>Jenis Kelamin</td>
             <td>
-                <select name="jk" size="1">
+                <select name="jk" size="1" required>
                     <option value="Laki-laki">Laki-laki</option>
                     <option value="Perempuan">Perempuan</option>
                 </select>
@@ -27,18 +94,18 @@
         <tr>
             <td>Agama</td>
             <td>
-                <input type="radio" name="agama" value="Islam">Islam<br />
-                <input type="radio" name="agama" value="Katholik">Katholik<br />
-                <input type="radio" name="agama" value="Protestan">Protestan<br />
-                <input type="radio" name="agama" value="Hindu">Hindu<br />
-                <input type="radio" name="agama" value="Budha">Budha<br />
+                <input type="radio" name="agama" value="Islam" required>Islam
+                <input type="radio" name="agama" value="Katholik">Katholik
+                <input type="radio" name="agama" value="Protestan">Protestan
+                <input type="radio" name="agama" value="Hindu">Hindu
+                <input type="radio" name="agama" value="Budha">Budha
             </td>
         </tr>
         <tr>
             <td>Hobby</td>
             <td>
-                <input type="checkbox" name="hobby[]" value="Browsing" />Browsing<br />
-                <input type="checkbox" name="hobby[]" value="Game" />Game<br />
+                <input type="checkbox" name="hobby[]" value="Browsing" />Browsing
+                <input type="checkbox" name="hobby[]" value="Game" />Game
                 <input type="checkbox" name="hobby[]" value="Olahraga" />Olahraga
             </td>
         </tr>
@@ -49,7 +116,7 @@
         <tr>
             <td><input type="submit" value="Kirim" /></td>
             <td><input type="reset" value="Batal" /></td>
-        </tr>
+        </tr>               
     </form>
 </table>
 
