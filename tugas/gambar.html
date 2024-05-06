@@ -4,17 +4,59 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Images</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            padding: 20px;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        figure {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        figcaption {
+            font-style: italic;
+            margin-top: 5px;
+        }
+
+        img {
+            display: flex;
+            margin: 0 auto;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Menambahkan ruang horizontal */
+        .hspace {
+            margin-left: 100px;
+        }
+
+        /* Menambahkan border */
+        .bordered {
+            border: 2px solid #009688;
+        }
+    </style>
 </head>
 <body>
     
-    <p>Gambar tanpa format</p>
-    <img src="../images/2.jpg" height="100">
+    <figure>
+        <img src="../images/2.jpg" height="100">
+        <figcaption>Gambar tanpa format</figcaption>
+    </figure>
 
-    <p>Gambar dengan format hspace</p>
-    <img src="../images/2.jpg" height="100" hspace="100">
+    <figure>
+        <img src="../images/2.jpg" height="100" class="hspace">
+        <figcaption>Gambar dengan format hspace</figcaption>
+    </figure>
 
-    <p>Gambar dengan border</p>
-    <img src="../images/2.jpg" border="2" height="100">
+    <figure>
+        <img src="../images/2.jpg" height="100" class="bordered">
+        <figcaption>Gambar dengan border</figcaption>
+    </figure>
 
 </body>
 </html>
