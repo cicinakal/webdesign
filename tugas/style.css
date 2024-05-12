@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, sans-serif; /* Ganti jenis font */
+    color: #333; /* Warna teks */
+    background-color: #f7f7f7; /* Warna latar belakang */
+    padding: 20px; /* Spasi antara teks dan tepi halaman */
+    text-align: center; /* Teks di tengah halaman */
+    line-height: 1.6; /* Jarak antar baris */
+}
+
+/* Efek bayangan pada teks */
+body {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
