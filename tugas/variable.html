@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Variable</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            padding: 20px;
+        }
+
+        .info {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .label {
+            font-weight: bold;
+        }
+
+        /* Menata tata letak umur di samping teks "Usia" */
+        .umur {
+            display: inline-block; /* Menjadikan elemen inline-block */
+            margin-left: 10px; /* Memberi jarak kiri dari teks "Usia" */
+        }
+    </style>
+</head>
+<body>
+
+<div class="info">
+    <script type="text/javascript">
+        var a = "Nama : ";
+        var b = " Maulana";
+        var c = "Jurusan : ";
+        var d = " Teknik Informatika";
+        var usia = 20;
+
+        document.write('<p class="label">' + a + b + '</p>');
+        document.write('<p class="label">' + c + d + '</p>');
+        document.write('<p class="label">Usia : ' + usia + ' Tahun');
+    </script>
+</div>
+
+</body>
+</html>
