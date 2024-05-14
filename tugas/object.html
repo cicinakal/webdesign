@@ -3,51 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Object</title>
+    <title>Clock</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             background-color: #f2f2f2;
-            padding: 20px;
+            padding: 0px;
             text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
 
         #output {
             background-color: #fff;
-            border-radius: 8px;
+            border-radius: 50%;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            margin-top: 20px;
+            padding: 40px;
             font-weight: bold;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 200px;
+            height: 200px;
+            border: 10px solid #333;
+        }
+
+        #tanggal {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        #waktu {
+            font-size: 1.5em;
+            color: #000;
         }
     </style>
 </head>
 <body>
 
 <div id="output">
-    <script type="text/javascript">
-        var sekarang = new Date();
-        hari = sekarang.getDay();
-        if (hari == 1) 
-            namahari = "Senin";
-        else if (hari == 2) 
-            namahari = "Selasa";
-        else if (hari == 3) 
-            namahari = "Rabu";
-        else if (hari == 4) 
-            namahari = "Kamis";
-        else if (hari == 5) 
-            namahari = "Jumat";
-        else if (hari == 6) 
-            namahari = "Sabtu";
-        else if (hari == 7) 
-            namahari = "Minggu";
-        tgl = sekarang.getDate();
-        bln = sekarang.getMonth() + 1;
-        thn = sekarang.getFullYear();
-        document.write("Sekarang adalah hari " + namahari + "," + tgl + "-" + bln + "-" + thn);
-    </script>
+    <div id="tanggal"></div>
+    <div id="waktu"></div>
 </div>
-    
+
+<script type="text/javascript">
+    function updateTime() {
+        var sekarang = new Date();
+        var hari = sekarang.getDay();
+        var namahari;
+
+        switch(hari) {
+            case 0: namahari = "Minggu"; break;
+            case 1: namahari = "Senin"; break;
+            case 2: namahari = "Selasa"; break;
+            case 3: namahari = "Rabu"; break;
+            case 4: namahari = "Kamis"; break;
+            case 5: namahari = "Jumat"; break;
+            case 6: namahari = "Sabtu"; break;
+        }
+
+        var tgl = sekarang.getDate();
+        var bln = sekarang.getMonth() + 1;
+        var thn = sekarang.getFullYear();
+        var jam = sekarang.getHours();
+        var menit = sekarang.getMinutes();
+        var detik = sekarang.getSeconds();
+
+        // Format waktu untuk menambahkan 0 di depan angka satu digit
+        jam = jam < 10 ? "0" + jam : jam;
+        menit = menit < 10 ? "0" + menit : menit;
+        detik = detik < 10 ? "0" + detik : detik;
+
+        var tanggal = namahari + ", " + tgl + "-" + bln + "-" + thn;
+        var waktu = jam + ":" + menit + ":" + detik;
+
+        document.getElementById("tanggal").innerHTML = tanggal;
+        document.getElementById("waktu").innerHTML = waktu;
+    }
+
+    // Panggil updateTime setiap detik
+    setInterval(updateTime, 1000);
+
+    // Panggil sekali saat halaman dimuat
+    updateTime();
+</script>
+
 </body>
 </html>
