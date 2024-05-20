@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perhitungan Gaji</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 20px); /* width - padding */
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #totalGaji {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<form id="gajiForm" action="#">
+    <label for="hariKerja">Jumlah Hari Kerja:</label>
+    <input type="number" id="hariKerja" name="hariKerja" required>
+    <label for="jamLembur">Jumlah Jam Lembur:</label>
+    <input type="number" id="jamLembur" name="jamLembur" required>
+    <button type="submit">Hitung Total Gaji</button>
+    <div id="totalGaji"></div>
+</form>
+
+<script>
+    document.getElementById("gajiForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        var hariKerja = parseInt(document.getElementById("hariKerja").value);
+        var jamLembur = parseInt(document.getElementById("jamLembur").value);
+        
+        var totalGaji = hitungTotalGaji(hariKerja, jamLembur);
+        
+        document.getElementById("totalGaji").innerHTML = "Total Gaji: Rp " + totalGaji.toFixed(2);
+    });
+
+    function hitungTotalGaji(hariKerja, jamLembur) {
+        var gajiPerHari = 50000;
+        var gajiHarian = hariKerja * gajiPerHari;
+        
+        var tarifLembur = 0;
+        if (jamLembur >= 1 && jamLembur < 3) {
+            tarifLembur = 25000;
+        } else if (jamLembur >= 3) {
+            tarifLembur = 35000;
+        }
+        var gajiLembur = jamLembur * tarifLembur;
+        
+        var bonusMakan = 0;
+        if (hariKerja == 20) {
+            bonusMakan = 5000 * hariKerja;
+        }
+        
+        var totalGaji = gajiHarian + gajiLembur + bonusMakan;
+        return totalGaji;
+    }
+</script>
+
+</body>
+</html>
