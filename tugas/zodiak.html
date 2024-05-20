@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Zodiak</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 20px); /* width - padding */
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 20px); /* width - padding */
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #hasil {
+            margin-top: 20px;
+        }
+
+        #hasil h2 {
+            color: #4CAF50;
+        }
+
+        #error {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<form id="zodiakForm" action="#">
+    <label for="tanggal">Tanggal:</label>
+    <input type="number" id="tanggal" name="tanggal" min="1" max="31" required>
+    <label for="bulan">Bulan:</label>
+    <select id="bulan" name="bulan" required>
+        <option value="1">Januari</option>
+        <option value="2">Februari</option>
+        <option value="3">Maret</option>
+        <option value="4">April</option>
+        <option value="5">Mei</option>
+        <option value="6">Juni</option>
+        <option value="7">Juli</option>
+        <option value="8">Agustus</option>
+        <option value="9">September</option>
+        <option value="10">Oktober</option>
+        <option value="11">November</option>
+        <option value="12">Desember</option>
+    </select>
+    <button type="submit">Cari Zodiak</button>
+    <div id="error"></div>
+    <div id="hasil"></div>
+</form>
+
+<script>
+    document.getElementById("zodiakForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        var tanggal = parseInt(document.getElementById("tanggal").value);
+        var bulan = parseInt(document.getElementById("bulan").value);
+
+        if (isValidDate(tanggal, bulan)) {
+            var zodiak = cariZodiak(tanggal, bulan);
+            var prediksi = prediksiZodiak(zodiak);
+        
+            document.getElementById("error").innerHTML = '';
+            document.getElementById("hasil").innerHTML = `
+                <h2>Zodiak Anda: ${zodiak}</h2>
+                <p>${prediksi}</p>
+            `;
+        } else {
+            document.getElementById("hasil").innerHTML = '';
+            document.getElementById("error").innerHTML = 'Tanggal tidak valid untuk bulan yang dipilih.';
+        }
+    });
+
+    function isValidDate(tanggal, bulan) {
+        if (bulan === 2) {
+            return tanggal >= 1 && tanggal <= 28;
+        }
+        if (bulan === 4 || bulan === 6 || bulan === 9 || bulan === 11) {
+            return tanggal >= 1 && tanggal <= 30;
+        }
+        return tanggal >= 1 && tanggal <= 31;
+    }
+
+    function cariZodiak(tanggal, bulan) {
+        if ((bulan == 3 && tanggal >= 21) || (bulan == 4 && tanggal <= 19)) {
+            return "Aries";
+        } else if ((bulan == 4 && tanggal >= 20) || (bulan == 5 && tanggal <= 20)) {
+            return "Taurus";
+        } else if ((bulan == 5 && tanggal >= 21) || (bulan == 6 && tanggal <= 20)) {
+            return "Gemini";
+        } else if ((bulan == 6 && tanggal >= 21) || (bulan == 7 && tanggal <= 22)) {
+            return "Cancer";
+        } else if ((bulan == 7 && tanggal >= 23) || (bulan == 8 && tanggal <= 22)) {
+            return "Leo";
+        } else if ((bulan == 8 && tanggal >= 23) || (bulan == 9 && tanggal <= 22)) {
+            return "Virgo";
+        } else if ((bulan == 9 && tanggal >= 23) || (bulan == 10 && tanggal <= 22)) {
+            return "Libra";
+        } else if ((bulan == 10 && tanggal >= 23) || (bulan == 11 && tanggal <= 21)) {
+            return "Scorpio";
+        } else if ((bulan == 11 && tanggal >= 22) || (bulan == 12 && tanggal <= 21)) {
+            return "Sagittarius";
+        } else if ((bulan == 12 && tanggal >= 22) || (bulan == 1 && tanggal <= 19)) {
+            return "Capricorn";
+        } else if ((bulan == 1 && tanggal >= 20) || (bulan == 2 && tanggal <= 18)) {
+            return "Aquarius";
+        } else {
+            return "Pisces";
+        }
+    }
+
+    function prediksiZodiak(zodiak) {
+        switch(zodiak) {
+            case "Aries":
+                return "Kesehatan: Baik, Asmara: Cinta bertambah, Keuangan: Beruntung, Karier: Sukses";
+            case "Taurus":
+                return "Kesehatan: Stabil, Asmara: Pasangan akan mendukung, Keuangan: Lancar, Karier: Berkembang";
+            case "Gemini":
+                return "Kesehatan: Butuh perhatian, Asmara: Perubahan dinamis, Keuangan: Stabil, Karier: Tantangan baru";
+            case "Cancer":
+                return "Kesehatan: Perlu istirahat, Asmara: Hubungan harmonis, Keuangan: Waspada, Karier: Peluang datang";
+            case "Leo":
+                return "Kesehatan: Fit, Asmara: Romantis, Keuangan: Peningkatan, Karier: Sukses";
+            case "Virgo":
+                return "Kesehatan: Perlu olahraga, Asmara: Komunikasi penting, Keuangan: Konservatif, Karier: Stabil";
+            case "Libra":
+                return "Kesehatan: Perlu perhatian, Asmara: Rileks, Keuangan: Peluang datang, Karier: Inovatif";
+            case "Scorpio":
+                return "Kesehatan: Perlu istirahat, Asmara: Intens, Keuangan: Stabil, Karier: Sukses";
+            case "Sagittarius":
+                return "Kesehatan: Enerjik, Asmara: Petualangan, Keuangan: Beruntung, Karier: Ambisius";
+            case "Capricorn":
+                return "Kesehatan: Stabil, Asmara: Pendukung, Keuangan: Lancar, Karier: Berkembang";
+            case "Aquarius":
+                return "Kesehatan: Butuh istirahat, Asmara: Dinamis, Keuangan: Perlu bijak, Karier: Penuh tantangan";
+            case "Pisces":
+                return "Kesehatan: Rawan penyakit, Asmara: Romantis, Keuangan: Perlu hemat, Karier: Stabil";
+            default:
+                return "Prediksi tidak tersedia";
+        }
+    }
+</script>
+
+</body>
+</html>
