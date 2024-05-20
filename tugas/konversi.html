@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Konversi Nilai</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"], input[type="text"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 20px); /* width - padding */
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<form id="nilaiForm" action="#">
+    <label for="nilai">Masukkan nilai:</label>
+    <input type="number" id="nilai" name="nilai" required>
+    <button type="submit">Konversi</button>
+    <input type="text" id="hasilKonversi" name="hasilKonversi" readonly>
+</form>
+
+<script>
+    document.getElementById("nilaiForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        var nilai = parseInt(document.getElementById("nilai").value);
+        var hasilKonversi = konversiNilai(nilai);
+        
+        document.getElementById("hasilKonversi").value = hasilKonversi;
+    });
+
+    function konversiNilai(nilai) {
+        if (nilai >= 80 && nilai <= 100) {
+            return "A";
+        } else if (nilai >= 70 && nilai < 80) {
+            return "B";
+        } else if (nilai >= 60 && nilai < 70) {
+            return "C";
+        } else if (nilai >= 50 && nilai < 60) {
+            return "D";
+        } else if (nilai >= 0 && nilai < 50) {
+            return "E";
+        } else {
+            return "Nilai tidak valid";
+        }
+    }
+</script>
+
+</body>
+</html>

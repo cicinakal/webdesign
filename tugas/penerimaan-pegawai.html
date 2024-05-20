@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syarat Penerimaan Pegawai</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="number"],
+        select {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 20px); /* width - padding */
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #hasil {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<form id="pegawaiForm" action="#">
+    <label for="jenisKelamin">Jenis Kelamin:</label>
+    <select id="jenisKelamin" name="jenisKelamin" required>
+        <option value="">Pilih Jenis Kelamin</option>
+        <option value="laki-laki">Laki-laki</option>
+        <option value="perempuan">Perempuan</option>
+    </select>
+    <label for="tinggiBadan">Tinggi Badan (cm):</label>
+    <input type="number" id="tinggiBadan" name="tinggiBadan" required>
+    <label for="beratBadan">Berat Badan (kg):</label>
+    <input type="number" id="beratBadan" name="beratBadan" required>
+    <label for="ipk">IPK:</label>
+    <input type="number" id="ipk" name="ipk" min="0" max="4" step="0.1" required>
+    <label for="pendidikan">Pendidikan:</label>
+    <select id="pendidikan" name="pendidikan" required>
+        <option value="">Pilih Pendidikan</option>
+        <option value="D3">D3</option>
+        <option value="S1">S1</option>
+    </select>
+    <button type="submit">Cek Syarat Penerimaan</button>
+    <div id="hasil"></div>
+</form>
+
+<script>
+    document.getElementById("pegawaiForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        var jenisKelamin = document.getElementById("jenisKelamin").value;
+        var tinggiBadan = parseInt(document.getElementById("tinggiBadan").value);
+        var beratBadan = parseInt(document.getElementById("beratBadan").value);
+        var ipk = parseFloat(document.getElementById("ipk").value);
+        var pendidikan = document.getElementById("pendidikan").value;
+        
+        var hasilPemeriksaan = cekSyarat(jenisKelamin, tinggiBadan, beratBadan, ipk, pendidikan);
+        
+        document.getElementById("hasil").innerHTML = hasilPemeriksaan;
+    });
+
+    function cekSyarat(jenisKelamin, tinggiBadan, beratBadan, ipk, pendidikan) {
+        if (jenisKelamin === "laki-laki" && tinggiBadan >= 170 && tinggiBadan <= 179 &&
+            ((beratBadan >= (tinggiBadan - 110) - 2) && (beratBadan <= (tinggiBadan - 110) + 2)) &&
+            ipk >= 3 && ipk <= 4 && (pendidikan === "D3" || pendidikan === "S1")) {
+            return "Anda memenuhi syarat penerimaan pegawai.";
+        } else if (jenisKelamin === "perempuan" && tinggiBadan >= 160 && tinggiBadan <= 170 &&
+            ((beratBadan >= (tinggiBadan - 110) - 2) && (beratBadan <= (tinggiBadan - 110) + 2)) &&
+            ipk >= 3 && ipk <= 4 && (pendidikan === "D3" || pendidikan === "S1")) {
+            return "Anda memenuhi syarat penerimaan pegawai.";
+        } else {
+            return "Maaf, Anda tidak memenuhi syarat penerimaan pegawai.";
+        }
+    }
+</script>
+
+</body>
+</html>

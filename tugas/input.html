@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kalkulator Pembayaran</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        form {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="number"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: calc(100% - 20px); /* width - padding */
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        button[type="submit"] {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        #totalBayar {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<form id="pembayaranForm" action="#">
+    <label for="nama">Nama Barang:</label>
+    <input type="text" id="nama" name="nama" required>
+    <label for="harga">Harga Barang:</label>
+    <input type="number" id="harga" name="harga" required>
+    <label for="jumlah">Jumlah Barang:</label>
+    <input type="number" id="jumlah" name="jumlah" required>
+    <button type="submit">Hitung Total Bayar</button>
+    <div id="totalBayar"></div>
+</form>
+
+<script>
+    document.getElementById("pembayaranForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        
+        var nama = document.getElementById("nama").value;
+        var harga = parseFloat(document.getElementById("harga").value);
+        var jumlah = parseInt(document.getElementById("jumlah").value);
+        
+        var totalBayar = hitungTotalBayar(harga, jumlah);
+        
+        document.getElementById("totalBayar").innerHTML = "Total Bayar untuk " + nama + ": Rp " + totalBayar.toFixed(2);
+    });
+
+    function hitungTotalBayar(harga, jumlah) {
+        var diskon = 0;
+        if (jumlah >= 3) {
+            diskon = 0.1 * harga * jumlah;
+        }
+        return (harga * jumlah) - diskon;
+    }
+</script>
+
+</body>
+</html>
