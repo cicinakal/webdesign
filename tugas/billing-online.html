@@ -8,15 +8,21 @@
         body {
             font-family: Arial, sans-serif;
             background-color: #f9f9f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
 
         .container {
             max-width: 400px;
-            margin: 0 auto;
+            width: 100%;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 5px;
             background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
         }
 
         input[type="number"], input[type="submit"] {
@@ -38,8 +44,24 @@
             background-color: #45a049;
         }
 
-        #result {
-            margin-top: 10px;
+        .result-container {
+            margin-top: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .result-container div {
+            margin: 5px 0;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+        }
+
+        .result-container p {
+            margin: 0;
             font-weight: bold;
         }
     </style>
@@ -48,17 +70,27 @@
     <div class="container">
         <h2>Billing Online</h2>
         <form id="inputForm">
-            <input type="number" id="seconds" placeholder="Masukkan Jumlah Detik">
+            <input type="number" id="seconds" placeholder="Masukkan Jumlah Detik" required>
             <input type="submit" value="Hitung Tagihan">
         </form>
-        <div id="result"></div>
+        <div id="result" class="result-container" style="display: none;">
+            <div>
+                <p id="duration"></p>
+            </div>
+            <div>
+                <p id="pulses"></p>
+            </div>
+            <div>
+                <p id="bill"></p>
+            </div>
+        </div>
     </div>
 
     <script>
         document.getElementById("inputForm").addEventListener("submit", function(event) {
             event.preventDefault(); // Prevent form submission
 
-            // Get input values
+            // Get input value
             var seconds = parseInt(document.getElementById("seconds").value);
 
             // Convert seconds to hours, minutes, and seconds
@@ -71,8 +103,10 @@
             var bill = pulses * 30;
 
             // Display result
-            var resultDiv = document.getElementById("result");
-            resultDiv.innerHTML = "Durasi: " + hours + " jam, " + minutes + " menit, " + remainingSeconds + " detik<br>Jumlah Pulsa: " + pulses + "<br>Tagihan: Rp " + bill;
+            document.getElementById("duration").innerText = "Durasi: " + hours + " jam, " + minutes + " menit, " + remainingSeconds + " detik";
+            document.getElementById("pulses").innerText = "Jumlah Pulsa: " + pulses;
+            document.getElementById("bill").innerText = "Tagihan: Rp " + bill;
+            document.getElementById("result").style.display = "block";
         });
     </script>
 </body>
