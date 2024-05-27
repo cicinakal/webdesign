@@ -16,12 +16,17 @@
             height: 100vh;
         }
 
-        form {
+        .container {
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             padding: 20px;
             text-align: center;
+            width: 300px;
+        }
+
+        form {
+            margin-bottom: 20px;
         }
 
         label {
@@ -36,7 +41,7 @@
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #ccc;
-            width: calc(100% - 20px); /* width - padding */
+            width: calc(100% - 16px); /* width - padding */
             margin-bottom: 15px;
             display: inline-block;
         }
@@ -55,36 +60,48 @@
             background-color: #45a049;
         }
 
-        #hasil {
-            margin-top: 20px;
+        .result-container {
+            background-color: #f9f9f9;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+        }
+
+        .result-container p {
+            margin: 0;
             font-weight: bold;
         }
     </style>
 </head>
 <body>
 
-<form id="pegawaiForm" action="#">
-    <label for="jenisKelamin">Jenis Kelamin:</label>
-    <select id="jenisKelamin" name="jenisKelamin" required>
-        <option value="">Pilih Jenis Kelamin</option>
-        <option value="laki-laki">Laki-laki</option>
-        <option value="perempuan">Perempuan</option>
-    </select>
-    <label for="tinggiBadan">Tinggi Badan (cm):</label>
-    <input type="number" id="tinggiBadan" name="tinggiBadan" required>
-    <label for="beratBadan">Berat Badan (kg):</label>
-    <input type="number" id="beratBadan" name="beratBadan" required>
-    <label for="ipk">IPK:</label>
-    <input type="number" id="ipk" name="ipk" min="0" max="4" step="0.1" required>
-    <label for="pendidikan">Pendidikan:</label>
-    <select id="pendidikan" name="pendidikan" required>
-        <option value="">Pilih Pendidikan</option>
-        <option value="D3">D3</option>
-        <option value="S1">S1</option>
-    </select>
-    <button type="submit">Cek Syarat Penerimaan</button>
-    <div id="hasil"></div>
-</form>
+<div class="container">
+    <form id="pegawaiForm" action="#">
+        <label for="jenisKelamin">Jenis Kelamin:</label>
+        <select id="jenisKelamin" name="jenisKelamin" required>
+            <option value="">Pilih Jenis Kelamin</option>
+            <option value="laki-laki">Laki-laki</option>
+            <option value="perempuan">Perempuan</option>
+        </select>
+        <label for="tinggiBadan">Tinggi Badan (cm):</label>
+        <input type="number" id="tinggiBadan" name="tinggiBadan" required>
+        <label for="beratBadan">Berat Badan (kg):</label>
+        <input type="number" id="beratBadan" name="beratBadan" required>
+        <label for="ipk">IPK:</label>
+        <input type="number" id="ipk" name="ipk" min="0" max="4" step="0.1" required>
+        <label for="pendidikan">Pendidikan:</label>
+        <select id="pendidikan" name="pendidikan" required>
+            <option value="">Pilih Pendidikan</option>
+            <option value="D3">D3</option>
+            <option value="S1">S1</option>
+        </select>
+        <button type="submit">Cek Syarat Penerimaan</button>
+    </form>
+
+    <div id="hasil" class="result-container" style="display: none;">
+        <p id="resultText"></p>
+    </div>
+</div>
 
 <script>
     document.getElementById("pegawaiForm").addEventListener("submit", function(event) {
@@ -98,7 +115,8 @@
         
         var hasilPemeriksaan = cekSyarat(jenisKelamin, tinggiBadan, beratBadan, ipk, pendidikan);
         
-        document.getElementById("hasil").innerHTML = hasilPemeriksaan;
+        document.getElementById("resultText").innerHTML = hasilPemeriksaan;
+        document.getElementById("hasil").style.display = "block";
     });
 
     function cekSyarat(jenisKelamin, tinggiBadan, beratBadan, ipk, pendidikan) {
