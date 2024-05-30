@@ -30,7 +30,7 @@
             font-weight: bold;
         }
 
-        input[type="number"] {
+        input[type="number"], input[type="text"] {
             padding: 8px;
             border-radius: 5px;
             border: 1px solid #ccc;
@@ -110,12 +110,19 @@
 
         if (isValidDate(tanggal, bulan)) {
             var zodiak = cariZodiak(tanggal, bulan);
-            var prediksi = prediksiZodiak(zodiak);
-        
             document.getElementById("error").innerHTML = '';
             document.getElementById("hasil").innerHTML = `
                 <h2>Zodiak Anda: ${zodiak}</h2>
-                <p>${prediksi}</p>
+                <form id="prediksiForm">
+                    <label for="kesehatan">Kesehatan:</label>
+                    <input type="text" id="kesehatan" name="kesehatan" value="${prediksiZodiak(zodiak, 'kesehatan')}" readonly>
+                    <label for="asmara">Asmara:</label>
+                    <input type="text" id="asmara" name="asmara" value="${prediksiZodiak(zodiak, 'asmara')}" readonly>
+                    <label for="keuangan">Keuangan:</label>
+                    <input type="text" id="keuangan" name="keuangan" value="${prediksiZodiak(zodiak, 'keuangan')}" readonly>
+                    <label for="karier">Karier:</label>
+                    <input type="text" id="karier" name="karier" value="${prediksiZodiak(zodiak, 'karier')}" readonly>
+                </form>
             `;
         } else {
             document.getElementById("hasil").innerHTML = '';
@@ -161,35 +168,83 @@
         }
     }
 
-    function prediksiZodiak(zodiak) {
-        switch(zodiak) {
-            case "Aries":
-                return "Kesehatan: Baik, Asmara: Cinta bertambah, Keuangan: Beruntung, Karier: Sukses";
-            case "Taurus":
-                return "Kesehatan: Stabil, Asmara: Pasangan akan mendukung, Keuangan: Lancar, Karier: Berkembang";
-            case "Gemini":
-                return "Kesehatan: Butuh perhatian, Asmara: Perubahan dinamis, Keuangan: Stabil, Karier: Tantangan baru";
-            case "Cancer":
-                return "Kesehatan: Perlu istirahat, Asmara: Hubungan harmonis, Keuangan: Waspada, Karier: Peluang datang";
-            case "Leo":
-                return "Kesehatan: Fit, Asmara: Romantis, Keuangan: Peningkatan, Karier: Sukses";
-            case "Virgo":
-                return "Kesehatan: Perlu olahraga, Asmara: Komunikasi penting, Keuangan: Konservatif, Karier: Stabil";
-            case "Libra":
-                return "Kesehatan: Perlu perhatian, Asmara: Rileks, Keuangan: Peluang datang, Karier: Inovatif";
-            case "Scorpio":
-                return "Kesehatan: Perlu istirahat, Asmara: Intens, Keuangan: Stabil, Karier: Sukses";
-            case "Sagittarius":
-                return "Kesehatan: Enerjik, Asmara: Petualangan, Keuangan: Beruntung, Karier: Ambisius";
-            case "Capricorn":
-                return "Kesehatan: Stabil, Asmara: Pendukung, Keuangan: Lancar, Karier: Berkembang";
-            case "Aquarius":
-                return "Kesehatan: Butuh istirahat, Asmara: Dinamis, Keuangan: Perlu bijak, Karier: Penuh tantangan";
-            case "Pisces":
-                return "Kesehatan: Rawan penyakit, Asmara: Romantis, Keuangan: Perlu hemat, Karier: Stabil";
-            default:
-                return "Prediksi tidak tersedia";
-        }
+    function prediksiZodiak(zodiak, kategori) {
+        const prediksi = {
+            "Aries": {
+                "kesehatan": "Kesehatan: Baik",
+                "asmara": "Asmara: Cinta bertambah",
+                "keuangan": "Keuangan: Beruntung",
+                "karier": "Karier: Sukses"
+            },
+            "Taurus": {
+                "kesehatan": "Kesehatan: Stabil",
+                "asmara": "Asmara: Pasangan akan mendukung",
+                "keuangan": "Keuangan: Lancar",
+                "karier": "Karier: Berkembang"
+            },
+            "Gemini": {
+                "kesehatan": "Kesehatan: Butuh perhatian",
+                "asmara": "Asmara: Perubahan dinamis",
+                "keuangan": "Keuangan: Stabil",
+                "karier": "Karier: Tantangan baru"
+            },
+            "Cancer": {
+                "kesehatan": "Kesehatan: Perlu istirahat",
+                "asmara": "Asmara: Hubungan harmonis",
+                "keuangan": "Keuangan: Waspada",
+                "karier": "Karier: Peluang datang"
+            },
+            "Leo": {
+                "kesehatan": "Kesehatan: Fit",
+                "asmara": "Asmara: Romantis",
+                "keuangan": "Keuangan: Peningkatan",
+                "karier": "Karier: Sukses"
+            },
+            "Virgo": {
+                "kesehatan": "Kesehatan: Perlu olahraga",
+                "asmara": "Asmara: Komunikasi penting",
+                "keuangan": "Keuangan: Konservatif",
+                "karier": "Karier: Stabil"
+            },
+            "Libra": {
+                "kesehatan": "Kesehatan: Perlu perhatian",
+                "asmara": "Asmara: Rileks",
+                "keuangan": "Keuangan: Peluang datang",
+                "karier": "Karier: Inovatif"
+            },
+            "Scorpio": {
+                "kesehatan": "Kesehatan: Perlu istirahat",
+                "asmara": "Asmara: Intens",
+                "keuangan": "Keuangan: Stabil",
+                "karier": "Karier: Sukses"
+            },
+            "Sagittarius": {
+                "kesehatan": "Kesehatan: Enerjik",
+                "asmara": "Asmara: Petualangan",
+                "keuangan": "Keuangan: Beruntung",
+                "karier": "Karier: Ambisius"
+            },
+            "Capricorn": {
+                "kesehatan": "Kesehatan: Stabil",
+                "asmara": "Asmara: Pendukung",
+                "keuangan": "Keuangan: Lancar",
+                "karier": "Karier: Berkembang"
+            },
+            "Aquarius": {
+                "kesehatan": "Kesehatan: Butuh istirahat",
+                "asmara": "Asmara: Dinamis",
+                "keuangan": "Keuangan: Perlu bijak",
+                "karier": "Karier: Penuh tantangan"
+            },
+            "Pisces": {
+                "kesehatan": "Kesehatan: Rawan penyakit",
+                "asmara": "Asmara: Romantis",
+                "keuangan": "Keuangan: Perlu hemat",
+                "karier": "Karier: Stabil"
+            }
+        };
+
+        return prediksi[zodiak][kategori];
     }
 </script>
 
